@@ -9,6 +9,7 @@
     "lint": "gts lint",
     "compile": "tsc",
     "fix": "gts fix",
+    "doctor": "./scripts/doctor.sh",
     "lintstaged": "lint-staged",
     "prepare": "husky install"
   },
