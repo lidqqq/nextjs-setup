@@ -1,8 +1,15 @@
+import { textState } from '@/lib/recoil/atom';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import { ChangeEvent } from 'react';
+import { useRecoilState } from 'recoil';
 
 const Home: NextPage = () => {
+  const [text, setText] = useRecoilState(textState);
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setText(event.target.value);
+  };
   return (
     <div>
       <Head>
@@ -12,6 +19,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main>hey</main>
+      <input type="text" value={text} onChange={onChange} />
+
+      <p>{text}</p>
 
       <footer>
         <a
