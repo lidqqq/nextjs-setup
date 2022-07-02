@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "gts lint",
+    "compile": "tsc",
+    "fix": "gts fix"
   },
   "dependencies": {
     "next": "12.2.0",
@@ -22,6 +24,7 @@
     "eslint-config-next": "12.2.0",
     "postcss": "8.4.14",
     "tailwindcss": "3.1.4",
-    "typescript": "4.7.4"
+    "typescript": "4.7.4",
+    "gts": "^3.1.0"
   }
 }
