@@ -16,6 +16,23 @@ First, install dependencies:
 pnpm i
 ```
 
+## Tech Stack
+
+### Client
+
+- Next.js/React
+- TailwindCSS
+
+### Test
+
+- vitest
+
+### Other
+
+- gts
+- husky
+- lint-staged
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
