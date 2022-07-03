@@ -1,12 +1,15 @@
-import { textState } from '@/lib/recoil/atom';
+import { useMounted } from '@/lib/hooks/util';
+import { textAtom } from '@/lib/jotai/atom';
+import { useAtom } from 'jotai';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { ChangeEvent } from 'react';
-import { useRecoilState } from 'recoil';
 
 const Home: NextPage = () => {
-  const [text, setText] = useRecoilState(textState);
+  const [text, setText] = useAtom(textAtom);
+  const isMounted = useMounted();
+  if (!isMounted) return null;
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   };
