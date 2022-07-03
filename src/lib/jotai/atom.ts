@@ -20,8 +20,8 @@ type Task = {
 	name: string;
 	project?: Project;
 };
-type TaskRecord = {
+export type TaskRecord = {
 	taskName: Task['name'];
-	startDate: Date; // expect toISOString
-	endDate: Date; // expect toISOString
+	startDate: string; // expect toISOString
+	endDate: string; // expect toISOString
 };

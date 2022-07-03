@@ -1,4 +1,4 @@
-import { useMounted } from '@hook/util';
+import { useMounted } from '@hooks/util';
 import { pagesPath } from '@lib/$path';
 import { projectsAtom } from '@lib/jotai/atom';
 import { useAtom } from 'jotai';

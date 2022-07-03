@@ -1,35 +1,51 @@
-import { useMounted } from '@hook/util';
+import { isoStringNow } from '@/lib/date';
+import { recordsAtom, TaskRecord } from '@/lib/jotai/atom';
+import { useAnimationFrame } from '@hooks/animationFrame';
+import { useMounted } from '@hooks/util';
+import { useAtom } from 'jotai';
 import { FormEvent, MouseEvent, useCallback, useRef, useState } from 'react';
-import { useAnimationFrame } from '../hooks/animationFrame';
 
 export const Task = () => {
-	const [date, setdate] = useState<string>(new Date(Date.now()).toISOString());
+	const [displayDate, setDisplaydate] = useState<string>(isoStringNow());
+	const [startDate, setStartdate] = useState<string>();
 	const ref = useRef<HTMLInputElement>(null);
-	const [setStart, setStop] = useAnimationFrame(() => {
-		setdate(new Date(Date.now()).toISOString());
+	const [recoreds, setrecoreds] = useAtom(recordsAtom);
+	const [start, stop] = useAnimationFrame(() => {
+		setDisplaydate(isoStringNow());
 	}, 1000);
-	const onSubmint = useCallback(
+	const onSubmit = useCallback(
 		(event: FormEvent) => {
 			event.preventDefault();
-			setStart();
+			setStartdate(isoStringNow);
+			start();
 		},
-		[setStart]
+		[start, setStartdate]
 	);
 	const onClickStop = useCallback(
 		(event: MouseEvent) => {
 			event.preventDefault();
-			setStop();
+			if (ref.current === null) return;
+			if (startDate === undefined) return;
+			const taskName = ref.current.value;
+			const endDate = isoStringNow();
+			const record: TaskRecord = {
+				taskName: taskName,
+				startDate,
+				endDate,
+			};
+			setrecoreds(recoreds.concat([record]));
+			stop();
 		},
-		[setStop]
+		[startDate, setrecoreds, recoreds, stop]
 	);
 	const isMounted = useMounted();
 	if (!isMounted) return null;
 
 	return (
 		<div>
-			<p>{date}</p>
+			<p>{displayDate}</p>
 			<div className="mt-4">
-				<form onSubmit={onSubmint} className="flex space-x-4">
+				<form onSubmit={onSubmit} className="flex space-x-4">
 					<div>
 						<label htmlFor="name">Enter your task name: </label>
 						<input
@@ -54,6 +70,20 @@ export const Task = () => {
 						stop
 					</button>
 				</form>
+				<ul className="mt-4 space-y-3 flex flex-col">
+					{recoreds.map((recod, idx) => {
+						return (
+							<li
+								key={`${recod.taskName}${idx}`}
+								className="p-2 border border-gray-400 rounded-sm max-w-fit"
+							>
+								<p>name: {recod.taskName}</p>
+								<p>start: {recod.startDate}</p>
+								<p>end: {recod.endDate}</p>
+							</li>
+						);
+					})}
+				</ul>
 			</div>
 		</div>
 	);

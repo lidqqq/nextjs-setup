@@ -22,7 +22,7 @@
 			"@ui/*": ["./src/interface/ui/*"],
 			"@shared/*": ["./src/interface/ui/shared/*"],
 			"@elm/*": ["./src/interface/ui/elements/*"],
-			"@hook/*": ["./src/interface/ui/hooks/*"]
+			"@hooks/*": ["./src/interface/ui/hooks/*"]
 		},
 		"incremental": true
 	},
