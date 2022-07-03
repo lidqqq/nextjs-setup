@@ -1,5 +1,9 @@
 import { atomWithStorage } from 'jotai/utils';
 
-const isClinet = typeof window === 'object';
+const ATOM_PREFIX = 'jotai/atom/';
 
-export const textAtom = atomWithStorage('key-atom', 'feaw');
+function key(key: string) {
+	return `${ATOM_PREFIX}${key}`;
+}
+
+export const projectsAtom = atomWithStorage<string[]>(key('projects'), []);
