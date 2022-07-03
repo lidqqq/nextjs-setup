@@ -1,5 +1,5 @@
 import { useMounted } from '@hook/util';
-import { FormEvent, MouseEvent, useRef, useState } from 'react';
+import { FormEvent, MouseEvent, useCallback, useRef, useState } from 'react';
 import { useAnimationFrame } from '../hooks/animationFrame';
 
 export const Task = () => {
@@ -8,16 +8,22 @@ export const Task = () => {
 	const [setStart, setStop] = useAnimationFrame(() => {
 		setdate(new Date(Date.now()).toISOString());
 	}, 1000);
+	const onSubmint = useCallback(
+		(event: FormEvent) => {
+			event.preventDefault();
+			setStart();
+		},
+		[setStart]
+	);
+	const onClickStop = useCallback(
+		(event: MouseEvent) => {
+			event.preventDefault();
+			setStop();
+		},
+		[setStop]
+	);
 	const isMounted = useMounted();
 	if (!isMounted) return null;
-	const onSubmint = (event: FormEvent) => {
-		event.preventDefault();
-		setStart();
-	};
-	const onClickStop = (event: MouseEvent) => {
-		event.preventDefault();
-		setStop();
-	};
 
 	return (
 		<div>
