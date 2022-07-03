@@ -29,7 +29,7 @@ export const Project = () => {
 						<input
 							ref={ref}
 							type="text"
-							name="name"
+							name="project-name"
 							id="name"
 							required
 							className="p-2 border border-blue-200 rounded-md"
@@ -43,7 +43,7 @@ export const Project = () => {
 				</form>
 				<button
 					onClick={onClickClear}
-					className="p-2 border border-blue-200 rounded-md hover:cursor-pointer active:bg-blue-50"
+					className="p-2 border border-red-200 rounded-md hover:cursor-pointer active:bg-blue-50"
 				>
 					clear
 				</button>

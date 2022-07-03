@@ -1,3 +1,6 @@
+import { atom } from 'jotai';
+import uniq from 'lodash/uniq';
+
 import { atomWithStorage } from 'jotai/utils';
 
 const ATOM_PREFIX = 'jotai/atom/';
@@ -7,21 +10,18 @@ function key(key: string) {
 }
 
 export const projectsAtom = atomWithStorage<Project[]>(key('projects'), []);
-export const tasksAtom = atomWithStorage<Task[]>(key('tasks'), []);
+// export const tasksAtom = atomWithStorage<Task[]>(key('tasks'), []);
 export const recordsAtom = atomWithStorage<TaskRecord[]>(key('records'), []);
+export const filterdTasksAtom = atom<string[]>(get => {
+	const records = get(recordsAtom);
+	const filterdTasks = uniq(records.map(r => r.taskName));
+	return filterdTasks;
+});
 
-// type StoreRoot = {
-// 	projects: Project[];
-// 	tasks: Task[];
-// 	record: TaskRecord[];
-// };
 type Project = string;
-type Task = {
-	name: string;
-	project?: Project;
-};
 export type TaskRecord = {
-	taskName: Task['name'];
+	taskName: string;
 	startDate: string; // expect toISOString
 	endDate: string; // expect toISOString
+	project?: Project;
 };

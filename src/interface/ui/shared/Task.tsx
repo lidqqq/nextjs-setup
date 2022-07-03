@@ -1,8 +1,8 @@
 import { isoStringNow } from '@/lib/date';
-import { recordsAtom, TaskRecord } from '@/lib/jotai/atom';
+import { filterdTasksAtom, recordsAtom, TaskRecord } from '@/lib/jotai/atom';
 import { useAnimationFrame } from '@hooks/animationFrame';
 import { useMounted } from '@hooks/util';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { FormEvent, MouseEvent, useCallback, useRef, useState } from 'react';
 
 export const Task = () => {
@@ -10,16 +10,18 @@ export const Task = () => {
 	const [startDate, setStartdate] = useState<string>();
 	const ref = useRef<HTMLInputElement>(null);
 	const [recoreds, setrecoreds] = useAtom(recordsAtom);
+	const filterdTasks = useAtomValue(filterdTasksAtom);
 	const [start, stop] = useAnimationFrame(() => {
 		setDisplaydate(isoStringNow());
 	}, 1000);
 	const onSubmit = useCallback(
 		(event: FormEvent) => {
 			event.preventDefault();
+			if (startDate !== undefined) return;
 			setStartdate(isoStringNow);
 			start();
 		},
-		[start, setStartdate]
+		[startDate, start]
 	);
 	const onClickStop = useCallback(
 		(event: MouseEvent) => {
@@ -34,9 +36,17 @@ export const Task = () => {
 				endDate,
 			};
 			setrecoreds(recoreds.concat([record]));
+			setStartdate(undefined);
 			stop();
 		},
 		[startDate, setrecoreds, recoreds, stop]
+	);
+	const onClickClear = useCallback(
+		(event: MouseEvent) => {
+			event.preventDefault();
+			setrecoreds([]);
+		},
+		[setrecoreds]
 	);
 	const isMounted = useMounted();
 	if (!isMounted) return null;
@@ -51,7 +61,7 @@ export const Task = () => {
 						<input
 							ref={ref}
 							type="text"
-							name="name"
+							name="task-name"
 							id="name"
 							required
 							className="p-2 border border-blue-200 rounded-md"
@@ -69,6 +79,13 @@ export const Task = () => {
 					>
 						stop
 					</button>
+					<button
+						onClick={onClickClear}
+						className="p-2 border border-red-200 rounded-md hover:cursor-pointer active:bg-blue-50"
+						type="button"
+					>
+						clear
+					</button>
 				</form>
 				<ul className="mt-4 space-y-3 flex flex-col">
 					{recoreds.map((recod, idx) => {
@@ -84,6 +101,9 @@ export const Task = () => {
 						);
 					})}
 				</ul>
+				{filterdTasks.map(t => {
+					return <p key={t}>{t}</p>;
+				})}
 			</div>
 		</div>
 	);
