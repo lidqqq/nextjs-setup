@@ -29,6 +29,8 @@ pnpm i
   - > React Hooks — 👍
 - [type-fest](https://github.com/sindresorhus/type-fest)
   - > A collection of essential TypeScript types
+- [pathpida](https://github.com/aspida/pathpida)
+  - > TypeScript friendly internal link client for Next.js, Nuxt.js and Sapper.
 
 ### Test
 
