@@ -7,19 +7,21 @@ function key(key: string) {
 }
 
 export const projectsAtom = atomWithStorage<Project[]>(key('projects'), []);
+export const tasksAtom = atomWithStorage<Task[]>(key('tasks'), []);
+export const recordsAtom = atomWithStorage<TaskRecord[]>(key('records'), []);
 
-type StoreRoot = {
-	projects: Project[];
-	tasks: Task[];
-	record: TaskRecord[];
-};
+// type StoreRoot = {
+// 	projects: Project[];
+// 	tasks: Task[];
+// 	record: TaskRecord[];
+// };
+type Project = string;
 type Task = {
 	name: string;
-	project?: string;
+	project?: Project;
 };
 type TaskRecord = {
-	taskName: string;
+	taskName: Task['name'];
 	startDate: Date; // expect toISOString
 	endDate: Date; // expect toISOString
 };
-type Project = string;
