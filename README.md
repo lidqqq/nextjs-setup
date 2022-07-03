@@ -20,24 +20,28 @@ pnpm i
 
 ### Client
 
-- Next.js/React
-- TailwindCSS
+- [Next.js](https://github.com/vercel/next.js)/[React](https://reactjs.org/)
+- [jotai](https://github.com/pmndrs/jotai)
+  - > 👻 Primitive and flexible state management for React
+- [TailwindCSS](https://tailwindcss.com/)
+  - > A utility-first CSS framework
+- [react-use](https://github.com/streamich/react-use)
+  - > React Hooks — 👍
+- [type-fest](https://github.com/sindresorhus/type-fest)
+  - > A collection of essential TypeScript types
 
 ### Test
 
-- vitest
+- [Vitest](https://vitest.dev/)
+  - > Blazing Fast Unit Test Framework
+  - [c8](https://github.com/bcoe/c8)
+    - > output coverage reports using Node.js' built in coverage
 
 ### Other
 
-- gts
-- husky
-- lint-staged
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [gts](https://github.com/google/gts)
+  - > Google's TypeScript style guide, and the configuration for our formatter, linter, and automatic code fixer.
+- [husky](https://github.com/typicode/husky)
+  - > Git hooks made easy 🐶 woof!
+- [lint-staged](https://github.com/okonet/lint-staged)
+  - > 🚫💩 — Run linters on git staged files

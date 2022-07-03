@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useEffectOnce } from 'usehooks-ts';
+import { useEffectOnce } from 'react-use';
 
 export function useMounted() {
   const [mounted, setMounted] = useState(false);
