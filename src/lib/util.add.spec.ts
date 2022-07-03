@@ -4,6 +4,6 @@ import { add } from './util';
 
 // The two tests marked with concurrent will be run in parallel
 it('serial test', async () => {
-  const res = add(1, 2);
-  expect(res).toBe(3);
+	const res = add(1, 2);
+	expect(res).toBe(3);
 });
