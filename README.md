@@ -26,8 +26,8 @@ pnpm i
     - > TypeScript friendly internal link client for Next.js, Nuxt.js and Sapper.
   - [react-use](https://github.com/streamich/react-use)
     - > React Hooks — 👍
-- [jotai](https://github.com/pmndrs/jotai)
-  - > 👻 Primitive and flexible state management for React
+  - [jotai](https://github.com/pmndrs/jotai)
+    - > 👻 Primitive and flexible state management for React
 - [TailwindCSS](https://tailwindcss.com/)
   - > A utility-first CSS framework
 - [type-fest](https://github.com/sindresorhus/type-fest)
